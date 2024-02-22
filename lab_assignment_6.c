@@ -1,7 +1,23 @@
 #include <stdio.h>
 
+/*
+Write an efficient recursive function that takes in 
+a sorted array of numbers, two integers, low and high, representing indexes into the array, and another integer, value, 
+and returns the index in the array where value is found in the array in between index low and high, inclusive. 
+If value is NOT found in the array 
+in between indexes low and high, inclusive, then the function should return -1. 
+*/
 int search(int numbers[], int low, int high, int value) 
 {
+	if(high >= low) {
+		int middle = low+(high-low)/2;
+		if(value == numbers[middle]) return middle;
+		if(numbers[middle] > value) {
+			return search(numbers, low, middle-1, value);
+		} else if (numbers[middle] < value) {
+			return search(numbers, middle+1, high, value);
+		}
+	}
 	return -1;
 }
 
